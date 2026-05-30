@@ -7,6 +7,7 @@ import react
 
 export default defineConfig({
   plugins: [react()],
+
   base:
     "/billing-system/",
 });
