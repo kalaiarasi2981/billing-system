@@ -1,0 +1,143 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f5f6fa;
+}
+
+.dashboard {
+  max-width: 900px;
+  margin: auto;
+  padding: 24px;
+}
+
+.card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.title {
+  margin: 0 0 20px;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.token {
+  background: #f1f5f9;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  margin-top: 15px;
+}
+
+.input,
+.select {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 12px;
+  border-radius: 10px;
+  border: 1px solid #dcdcdc;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.input:focus,
+.select:focus {
+  outline: none;
+  border-color: #2563eb;
+}
+
+.button-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 15px;
+}
+
+.btn {
+  border: none;
+  padding: 12px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.btn-add {
+  background: #2563eb;
+  color: white;
+}
+
+.btn-print {
+  background: #16a34a;
+  color: white;
+}
+
+.btn-clear {
+  background: #dc2626;
+  color: white;
+}
+
+.btn-sales {
+  background: #7c3aed;
+  color: white;
+}
+
+.btn-logout {
+  background: #374151;
+  color: white;
+}
+
+.preview-box {
+  background: #eef6ff;
+  padding: 12px;
+  border-radius: 10px;
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.bill-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background: white;
+}
+
+.bill-table th {
+  background: #f8fafc;
+  padding: 12px;
+  text-align: left;
+}
+
+.bill-table td {
+  padding: 12px;
+  border-top: 1px solid #eee;
+}
+
+.total-box {
+  margin-top: 20px;
+  background: #ecfdf5;
+  padding: 16px;
+  border-radius: 12px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .button-row {
+    flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
+  }
+
+  .bill-table {
+    font-size: 14px;
+  }
+}
