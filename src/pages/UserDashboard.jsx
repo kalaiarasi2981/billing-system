@@ -326,38 +326,102 @@ export default function StaffDashboard() {
       ])
     );
   }
-
-  function printBill() {
-    if (
-      billItems.length ===
-      0
-    ) {
-      alert(
-        "Add items first"
-      );
-      return;
-    }
-
-    saveTodaySale();
-
-    const nextToken =
-      tokenNo + 1;
-
-    localStorage.setItem(
-      "currentToken",
-      nextToken
-    );
-
-    setTokenNo(
-      nextToken
-    );
-
-    window.print();
-
-    clearItems();
-    setCustomerName("");
+function printBill() {
+  
+  if (billItems.length === 0) {
+    alert("Add items first");
+    return;
   }
 
+  saveTodaySale();
+
+  const receipt = `
+    <div style="width:58mm;font-family:monospace;padding:5px;">
+      <center>
+        <h3>CHICKEN SHOP</h3>
+      </center>
+
+      <p>--------------------------</p>
+
+      <p>Token : ${tokenNo}</p>
+      <p>Customer : ${customerName || "Walk-in"}</p>
+
+      <p>--------------------------</p>
+
+      ${billItems
+        .map(
+          (item) => `
+            <div style="display:flex;justify-content:space-between;margin:4px 0;">
+              <div>
+                ${item.product}<br/>
+                ${item.qty}${item.type === "piece" ? " pcs" : " kg"}
+              </div>
+              <div>₹${item.total}</div>
+            </div>
+          `
+        )
+        .join("")}
+
+      <p>--------------------------</p>
+
+      <h3>TOTAL ₹${grandTotal}</h3>
+
+      <p>--------------------------</p>
+
+      <center>
+        <small>Thank You</small>
+      </center>
+    </div>
+  `;
+
+  const printWindow = window.open("", "_blank");
+  console.log(printWindow);
+  if (!printWindow) {
+    alert("Popup blocked. Please allow popups.");
+    return;
+  }
+
+  printWindow.document.write(`
+    <html>
+      <head>
+        <title>Receipt</title>
+        <style>
+          @page {
+            margin: 0;
+          }
+
+          body {
+            margin: 0;
+            padding: 0;
+          }
+        </style>
+      </head>
+      <body>
+        ${receipt}
+      </body>
+    </html>
+  `);
+
+  printWindow.document.close();
+
+  setTimeout(() => {
+    printWindow.focus();
+    printWindow.print();
+    printWindow.close();
+  }, 1000);
+
+  const nextToken = tokenNo + 1;
+
+  localStorage.setItem(
+    "currentToken",
+    nextToken
+  );
+
+  setTokenNo(nextToken);
+
+  clearItems();
+  setCustomerName("");
+}
   return (
     <div className="dashboard">
       <div className="card">
@@ -622,7 +686,7 @@ export default function StaffDashboard() {
             grandTotal
           }
         </div>
-      </div>
-    </div>
+</div>
+</div>
   );
 }
